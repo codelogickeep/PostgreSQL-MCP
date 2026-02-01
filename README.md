@@ -30,18 +30,30 @@
     -   **返回**: JSON 格式的查询计划。
 
 
-## 快速开始 (使用 uv)
+## 快速开始
 
-本项目支持通过 `uv` 直接运行，无需手动安装依赖（依赖已声明在脚本头部）。
+本项目支持多种运行方式，您可以根据场景选择。
+
+### 方式 1: 使用 uvx (推荐，无需安装)
+
+如果您的代码已发布到 PyPI 或通过 Git 使用：
+
+```bash
+# 确保设置了环境变量
+set DATABASE_URL=postgresql://postgres:password@localhost:5432/mydb
+
+# 自动下载并运行
+uvx postgresql-mcp
+```
+
+### 方式 2: 本地开发运行
 
 ```bash
 # 进入目录
 cd postgresql-mcp
 
-# 直接运行（uv 会自动安装 mcp 和 psycopg 依赖）
-# 确保设置了环境变量
-set DATABASE_URL=postgresql://postgres:password@localhost:5432/mydb
-uv run server.py
+# 运行 (uv 会自动安装依赖)
+uv run postgresql-mcp
 ```
 
 ## 配置
@@ -67,16 +79,15 @@ uv run server.py
 
 #### Claude Desktop / Trae 配置
 
-请将以下配置添加到您的 MCP 配置文件中 (如 `claude_desktop_config.json` 或 Trae 的配置)：
+请将以下配置添加到您的 MCP 配置文件中：
 
 ```json
 {
   "mcpServers": {
     "postgresql": {
-      "command": "uv",
+      "command": "uvx",
       "args": [
-        "run",
-        "E:\\OpenProjectCode\\testPython\\postgresql-mcp\\server.py"
+        "postgresql-mcp"
       ],
       "env": {
         "PGUSER": "your_username",
@@ -90,10 +101,21 @@ uv run server.py
 }
 ```
 
-> **注意**: 
-> 1. 请确保 `uv` 命令在您的系统 PATH 中。
-> 2. 将 `args` 中的路径修改为您实际的 `server.py` 绝对路径。
-> 3. 您也可以在 `env` 中直接使用 `"DATABASE_URL": "postgresql://..."` 替代 PG* 变量。
+## 发布指南
+
+如果您想将其发布为标准的 MCP 包，以便他人通过 `uvx` 使用：
+
+1.  **构建**:
+    ```bash
+    uv build
+    ```
+
+2.  **发布到 PyPI**:
+    ```bash
+    uv publish
+    ```
+
+发布后，任何人都可以通过 `uvx postgresql-mcp` 直接运行它。
 
 ## 虚拟索引分析示例
 

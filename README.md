@@ -2,17 +2,33 @@
 
 这是一个精简的 PostgreSQL Model Context Protocol (MCP) 服务器，旨在提供基础的数据库交互和查询分析功能。
 
-## 功能特性
+## 工具说明
 
-1.  **通用查询 (`query_sql`)**: 执行任意 SQL 语句。
-2.  **表结构查看**:
-    - `list_tables`: 列出当前数据库的表。
-    - `describe_table`: 查看指定表的列定义。
-3.  **索引分析 (`explain_query`)**:
-    - 支持 `EXPLAIN` 和 `EXPLAIN ANALYZE`。
-    - **支持虚拟索引**: 结合 `hypopg` 扩展，可以在不实际创建索引的情况下，评估添加索引对查询性能的影响（"What-If" 分析）。
-4.  **无连接池**: 每次请求独立创建连接并立即释放，适合低频或Serverless场景。
-5.  **自动依赖管理**: 支持通过 `uv` 自动安装依赖，开箱即用。
+-   **query_sql**
+    -   **功能**: 执行通用的 SQL 查询。
+    -   **参数**: `sql` (string) - 要执行的 SQL 语句。
+    -   **返回**: JSON 格式的查询结果或执行状态消息。
+
+-   **list_tables**
+    -   **功能**: 列出数据库中的表。
+    -   **参数**: `schema` (string, 默认 "public") - 要查询的模式名称。
+    -   **返回**: 包含表名和表类型的 JSON 列表。
+
+-   **describe_table**
+    -   **功能**: 获取表的详细结构信息。
+    -   **参数**: 
+        -   `table_name` (string) - 表名。
+        -   `schema` (string, 默认 "public") - 模式名称。
+    -   **返回**: 包含列名、数据类型、可空性、默认值等信息的 JSON 列表。
+
+-   **explain_query**
+    -   **功能**: 分析 SQL 查询计划，支持虚拟索引。
+    -   **参数**:
+        -   `sql` (string) - 要分析的 SQL 语句。
+        -   `analyze` (boolean, 默认 false) - 是否实际执行查询 (EXPLAIN ANALYZE)。
+        -   `hypothetical_indexes` (list[string], 可选) - 虚拟索引定义列表 (需要 hypopg 扩展)。
+    -   **返回**: JSON 格式的查询计划。
+
 
 ## 快速开始 (使用 uv)
 

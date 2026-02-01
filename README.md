@@ -43,7 +43,7 @@
 set DATABASE_URL=postgresql://postgres:password@localhost:5432/mydb
 
 # 自动下载并运行
-uvx postgresql-mcp
+uvx postgresql-server-mcp
 ```
 
 ### 方式 2: 本地开发运行
@@ -53,7 +53,7 @@ uvx postgresql-mcp
 cd postgresql-mcp
 
 # 运行 (uv 会自动安装依赖)
-uv run postgresql-mcp
+uv run postgresql-server-mcp
 ```
 
 ## 配置
@@ -87,7 +87,7 @@ uv run postgresql-mcp
     "postgresql": {
       "command": "uvx",
       "args": [
-        "postgresql-mcp"
+        "postgresql-server-mcp"
       ],
       "env": {
         "PGUSER": "your_username",
@@ -115,7 +115,7 @@ uv run postgresql-mcp
     uv publish
     ```
 
-发布后，任何人都可以通过 `uvx postgresql-mcp` 直接运行它。
+发布后，任何人都可以通过 `uvx postgresql-server-mcp` 直接运行它。
 
 ## 虚拟索引分析示例
 

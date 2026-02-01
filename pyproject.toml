@@ -1,5 +1,5 @@
 [project]
-name = "postgresql-mcp"
+name = "postgresql-server-mcp"
 version = "0.1.0"
 description = "A simplified PostgreSQL MCP server"
 readme = "README.md"
@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
-postgresql-mcp = "postgresql_mcp.server:main"
+postgresql-server-mcp = "postgresql_mcp.server:main"
 
 [build-system]
 requires = ["hatchling"]

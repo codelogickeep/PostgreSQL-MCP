@@ -5,7 +5,7 @@
 ## 工具说明
 
 -   **query_sql**
-    -   **功能**: 执行通用的 SQL 查询。
+    -   **功能**: 执行 SQL 语句。支持数据查询(SELECT)、数据操作(INSERT/UPDATE/DELETE)以及结构变更(DDL)。
     -   **参数**: `sql` (string) - 要执行的 SQL 语句。
     -   **返回**: JSON 格式的查询结果或执行状态消息。
 

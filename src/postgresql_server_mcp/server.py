@@ -42,7 +42,7 @@ async def get_connection() -> psycopg.AsyncConnection:
 @mcp.tool()
 async def query_sql(sql: str) -> str:
     """
-    执行通用的 SQL 查询。
+    执行 SQL 语句。支持数据查询(SELECT)、数据操作(INSERT/UPDATE/DELETE)以及结构变更(DDL)。
     
     Args:
         sql: 要执行的 SQL 语句。

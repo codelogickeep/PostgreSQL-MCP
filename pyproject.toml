@@ -1,0 +1,15 @@
+[project]
+name = "postgresql-mcp"
+version = "0.1.0"
+description = "A simplified PostgreSQL MCP server"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "psycopg[binary]>=3.2.0"
+]
+
+[project.scripts]
+postgresql-mcp = "server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
